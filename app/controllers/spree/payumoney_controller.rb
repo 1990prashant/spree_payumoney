@@ -15,6 +15,7 @@ module Spree
       @txnid = payment_method.txnid(current_order)
       @amount = current_order.total.to_s
       @email = current_order.email
+      @productinfo = "artwork"
       
       if(address = current_order.bill_address || current_order.ship_address)
         @phone = address.phone #udf2
