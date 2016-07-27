@@ -1,6 +1,6 @@
 module SpreePayumoney
   class Engine < Rails::Engine
-    require 'solidus/core'
+    require 'solidus_core'
     isolate_namespace Spree
     engine_name 'spree_payumoney'
 
