@@ -11,6 +11,7 @@ module Spree
       
       @service_url = payment_method.provider.service_url
       @merchant_key = payment_method.preferred_merchant_id
+      @salt_key = payment_method.preferred_secret_key
 
       @txnid = payment_method.txnid(current_order)
       @amount = current_order.total.to_s
