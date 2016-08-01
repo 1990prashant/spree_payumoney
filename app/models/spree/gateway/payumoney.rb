@@ -52,7 +52,7 @@ module Spree
     end
 
     def checksum_ok?(order, payu_txnid, payu_amount)
-      if txnid(order) == payu_txnid && order.total.to_f.round(2) == payu_amount.to_f.round(2)
+      txnid(order) == payu_txnid && order.total.to_f.round(2) == payu_amount.to_f.round(2)
       # Digest::SHA512.hexdigest([preferred_secret_key, *itms, preferred_merchant_id].join("|")) == pg_hash
     end
 
