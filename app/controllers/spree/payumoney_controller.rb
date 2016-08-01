@@ -47,7 +47,8 @@ module Spree
       end
       
       #confirm for correct hash and order amount requested before marking an payment as 'complete'
-      checksum_matched = payment_method.checksum_ok?([params[:status], '', '', '', '', '', '', params[:udf4], params[:udf3], params[:udf2], params[:udf1], order.email, firstname, @productinfo, params[:amount], params[:txnid]], params[:hash])
+      # checksum_matched = payment_method.checksum_ok?([params[:status], '', '', '', '', '', '', params[:udf4], params[:udf3], params[:udf2], params[:udf1], order.email, firstname, @productinfo, params[:amount], params[:txnid]], params[:hash])
+      checksum_matched = payment_method.checksum_ok?(order, params[:txnid], params[:amount])
       if !checksum_matched
         flash.alert = 'Malicious transaction detected.'
         redirect_to checkout_state_path(order.state)
@@ -76,7 +77,7 @@ module Spree
         order.update!
         flash.notice = Spree.t(:order_processed_successfully)
 
-        redirect_to order_path(order)
+        redirect_to checkout_state_path(order.next_transition.to)
         return
       else
         redirect_to checkout_state_path(order.state)

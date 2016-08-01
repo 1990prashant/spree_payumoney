@@ -51,8 +51,9 @@ module Spree
       "payu_paisa"
     end
 
-    def checksum_ok?(itms, pg_hash)
-      Digest::SHA512.hexdigest([preferred_secret_key, *itms, preferred_merchant_id].join("|")) == pg_hash
+    def checksum_ok?(order, payu_txnid, payu_amount)
+      if txnid(order) == payu_txnid && order.total.to_f.round(2) == payu_amount.to_f.round(2)
+      # Digest::SHA512.hexdigest([preferred_secret_key, *itms, preferred_merchant_id].join("|")) == pg_hash
     end
 
     def amount_ok?(order_total, pg_amount)
