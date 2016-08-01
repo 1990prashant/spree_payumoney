@@ -71,7 +71,7 @@ module Spree
       payment.complete
 
       order.next
-      order.update_attributes({:state => "complete", :completed_at => Time.now})
+      order.update_attributes({:state => "confirm"})
                     
       if order.complete?
         order.update!
