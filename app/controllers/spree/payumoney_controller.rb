@@ -77,7 +77,7 @@ module Spree
         order.update!
         flash.notice = Spree.t(:order_processed_successfully)
 
-        redirect_to checkout_state_path(order.next_transition.to)
+        redirect_to checkout_state_path("confirm")
         return
       else
         redirect_to checkout_state_path(order.state)
