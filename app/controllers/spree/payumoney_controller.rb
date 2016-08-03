@@ -87,10 +87,11 @@ module Spree
 
     def cancel
       #log some entry into table
-      Spree::LogEntry.create({
-        source: 'Spree::Gateway::Payumoney',
-        details: params.to_yaml
-      })
+      #Didn't do that because it causes an error like primary_key
+      # Spree::LogEntry.create({
+      #   source: 'Spree::Gateway::Payumoney',
+      #   details: params.to_yaml
+      # })
       
       flash[:notice] = "Don't want to use Payumoney? No problems."
       #redirect to payment path and ask user to complete checkout
